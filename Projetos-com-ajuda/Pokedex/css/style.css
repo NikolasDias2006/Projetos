@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@700&family=Oxanium:wght@300;400;500;600;700;800&family=Sriracha&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Oxanium",cursive;
+}
+
+body {
+    text-align: center;
+    background: linear-gradient(to bottom, #6ab7f5 , #fff);
+    min-height: 100vh;
+}
+
+main {
+    display: inline-block;
+    margin-top: 2%;
+    padding: 15px;
+    position: relative; /*Para nao vazar os position absolute*/
+}
+
+.pokedex {
+     width:100%;
+     max-width: 425px;
+}
+
+.pokemon_imagem {
+    width: 30%; /*Ajustar o tamanho da imagem */
+    position: absolute;
+    bottom: 53%;
+    left:50%;
+    height: 18%;
+    transform: translate(-63%,20%);
+}
+
+/* parei no minuto 13:11 */
