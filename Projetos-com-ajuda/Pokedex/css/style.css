@@ -70,4 +70,29 @@ main {
      box-shadow: -4px 4px 0px #888, -6px 7px 0px #333;
 }
 
-/* parei no minuto 23:20 */
+.buttons {
+    position: absolute;
+    bottom: 10%;
+    left:50%;
+    width:65%;
+    transform: translate(-57%,0);
+    display: flex;
+    gap: 20px;
+}
+
+.button {
+    width:50%;
+    padding: 4%;
+    border: 3px solid black;
+    border-radius: 5px;
+    font-size:clamp(8px,5vw,1rem);
+    font-weight: 600;
+    color: white;
+    background-color: #444;
+    box-shadow: -2px 3px 0px #222,-4px 6px 0px black;
+}
+
+.button:active {
+    box-shadow: inset -4px 4px 0px #222;
+    font-size: 0.9em; 
+}
