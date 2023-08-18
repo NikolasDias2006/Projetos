@@ -28,7 +28,6 @@ main {
 }
 
 .pokemon_imagem {
-    width: 30%; /*Ajustar o tamanho da imagem */
     position: absolute;
     bottom: 53%;
     left:50%;
