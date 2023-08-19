@@ -11,11 +11,22 @@ const fetchpokemon = async (pokemon) => {
     /*pegar os dados*/
     const Apiresponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`
     );
+    
+    if(Apiresponse.status == 200) {
     /*Geralmente os que estao com await sao dados que demora para carregar,e entao é nercessario para carregar de uma vez*/
 
     const data = await Apiresponse.json(); /* Carregar todos os dados / extraindo os dados */
 
     return data;
+    } else {
+        pokemonimagem.src = 'https://i.pinimg.com/originals/f6/8c/0e/f68c0eacc02886c44f1c5be8f3098f0c.png'
+
+        pokemoname.style.color = "black";
+        pokemonumber.style.color = "black";
+        pokemoname.innerHTML = '!';
+        pokemonumber.innerHTML = 'Not Found';
+        
+    }
 }
 
 const renderpokemon = async (pokemon) => {
@@ -25,13 +36,16 @@ const renderpokemon = async (pokemon) => {
     pokemonumber.innerHTML = data.id;
 
     pokemonimagem.src = data.sprites.versions['generation-v']['black-white'].animated.front_default;
-    
+
+    pokemonsearch.value = '';
+     /*ja deixará pronto para escrever ao se executado*/
+    focus()
 }
 /*Quando enviar o formulario,irá executar o seguinte comando: */
 
 pokemonform.addEventListener("submit",function (evento) {
     /* o valor que irá digitar */
-    search = pokemonsearch.value..toLowerCase()
+    search = pokemonsearch.value.toLowerCase()
     /*para impedir a execuçao inicial dele,ou seja ao apertar para pesquisar nao enviar na hora ate que der enter*/
 
     evento.preventDefault();
