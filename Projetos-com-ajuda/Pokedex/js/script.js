@@ -52,4 +52,4 @@ pokemonform.addEventListener("submit",function (evento) {
     renderpokemon(search)
 })
 
-/*Parei na parte 42:30*/
+/*Parei na parte 50:32*/
