@@ -95,3 +95,9 @@ main {
     box-shadow: inset -4px 4px 0px #222;
     font-size: 0.9em; 
 }
+
+a {
+    text-decoration: none;
+    color: blue;
+    background-color: #6ab7f568;
+}
