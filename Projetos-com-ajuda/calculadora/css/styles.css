@@ -33,12 +33,62 @@ body {
     text-align: right;
 }
 
-#previous-operation {
-    color: #777;
-    padding: .2em;
-
-    /*Ajuda o dado a nao ficar para fora da div*/
+#previous-operation,#current-operation {
+    min-height: 1.6em;
+    padding: 0.2em;
     overflow-wrap: break-word;
 }
 
-/*Parei no minuto 12:41*/
+
+
+#previous-operation {
+    color: #777;
+    /*Ajuda o dado a nao ficar para fora da div*/
+}
+
+#current-operation {
+    font-size: 3em;
+    font-weight: 700;
+}
+
+#buttons-container {
+    /* um embaixo do outro */
+     display: grid; 
+     /*talvez um otimo jeito de fazer tabelas*/
+     grid-template-columns: 1fr 1fr 1fr 1fr;
+     /*aumenta o espaço entre os botoes*/
+     gap: 3px; 
+}
+
+#buttons-container button {
+   border: 1px solid transparent;
+   border-radius: 0;
+   height: 4em;
+   font-size: 1.2em;
+   background-color: white;
+   /* Cursor em forma de click ao encostar nos botoes */
+   cursor: pointer; 
+
+}
+
+#buttons-container .number {
+    background-color: #f3f3f3c2;
+}
+
+#buttons-container button:hover {
+        background-color: #bababa;
+        border-color: #999;
+}
+
+#buttons-container #equal-btn {
+    grid-column: span 2;
+    background-color: #75a4cb;
+}   
+
+#buttons-container #equal-btn:hover {
+    background-color: #3a91d8;
+    border-color: #999;
+}
+
+
+/*Parei no minuto */
