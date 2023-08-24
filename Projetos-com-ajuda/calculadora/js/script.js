@@ -45,4 +45,4 @@ class Calculator {
         })
 })
 
-/* parei no minuto  */
+/* parei no minuto  29:55*/
