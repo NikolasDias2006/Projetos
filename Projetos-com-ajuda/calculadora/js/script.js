@@ -15,16 +15,48 @@ class Calculator {
 
      //adicionando digito para a tela da calculadora
     adddigit(digit) {
+        /* if para checar se o . ja foi colocado para nao repiti-lo */
+      if(digit === "." && this.cuoptext.innerText.includes(".")) {
+         return;
+      }
         this.currentoperation = digit
         this.uptadescreen()
  }
 
- //trocando/atualizando valores da tela da calculadora
+ /* processa todos os operadores
+    proop = processOperation
+ */
+   proop(operation) {
+      //obtendo valores anterioes e recentes
+      let operationvalue
+      const previus = +this.preoutex.innerText
+      const current = +this.cuoptext.innerText
 
-    uptadescreen() {
+      switch(operation) {
+          case "+":
+             operationvalue = previus + current
+             this.uptadescreen(operationvalue,
+              operation,current,previus)
+            
+         break
+         default:
+         return
+      }
+   }               
+
+  //trocando ou atualizando valores da tela da calculadora
+    uptadescreen(
+      operationvalue = null
+      ,operation = null
+      ,current = null
+      ,previus = null
+      ) {
         this.cuoptext.innerText += this.currentoperation
+
+        console.log(operationvalue, operation, previus ,current)
  }
 }
+
 
 
    // add novos elementos...
@@ -40,9 +72,9 @@ class Calculator {
         if(+value >=0 || value === ".") {
            calc.adddigit(value)
         } else {
-            console.log("OP: "+value)
+            calc.proop(value)
         }
         })
 })
 
-/* parei no minuto  29:55*/
+// parei no minuto  37:34 
