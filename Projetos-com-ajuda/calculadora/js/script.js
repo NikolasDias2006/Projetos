@@ -36,8 +36,7 @@ class Calculator {
           case "+":
              operationvalue = previus + current
              this.uptadescreen(operationvalue,
-              operation,current,previus)
-            
+              operation,current,previus)       
          break
          default:
          return
@@ -56,8 +55,6 @@ class Calculator {
         console.log(operationvalue, operation, previus ,current)
  }
 }
-
-
 
    // add novos elementos...
    const calc = new Calculator(preoutex,cuoptext)
