@@ -4,7 +4,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: Helvetica, sans-serif;
+    font-family: Helvetica, sans-serif;  
 }
 
 body {
@@ -88,4 +88,8 @@ body {
 #buttons-container #equal-btn:hover {
     background-color: #3a91d8;
     border-color: #999;
+}
+
+footer {
+     background-color: white; 
 }
