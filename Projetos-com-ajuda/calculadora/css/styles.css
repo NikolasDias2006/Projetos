@@ -94,12 +94,11 @@ body {
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    top: 0;
     text-align: center;
-    background-color: gainsboro;
+    background-color: rgba(220, 220, 220, 0);
     min-height: 10px;
     min-height: 40px;
     width: 100%;
-    box-shadow: 0px 0px 10px black;
  }
