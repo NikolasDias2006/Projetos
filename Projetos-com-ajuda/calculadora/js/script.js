@@ -28,7 +28,7 @@ class Calculator {
  */
    proop(operation) {
       //checando se o valor do curret está vazio:
-      if(cuoptext.innerText === ""){
+      if(cuoptext.innerText === "" && operation !== "C"){
          //troca de operaçao
          if(this.preoutex.innerText !== "") {
             this.changeoperation(operation)
@@ -65,6 +65,27 @@ class Calculator {
              this.uptadescreen(operationvalue,
               operation,current,previus)       
          break
+
+         case "DEL":
+             /*ProcessDelOperator*/
+             this.prodelop()       
+         break
+
+         case "CE":
+            /*ProcessCeOperator*/ 
+             this.proceop()       
+         break
+
+         case "C":
+            /*ProcessClearAll*/ 
+             this.proclear()       
+         break
+
+         case "=":
+            /*ProcessEqualOPerator*/ 
+             this.proequalop()       
+         break
+
          default:
          return
       }
@@ -103,7 +124,29 @@ class Calculator {
 
       this.preoutex.innerText = this.preoutex.innerText.slice(0,-1)+operation
    }
-  }
+   /*funcao para deletar o ultimo digito*/
+   prodelop() {
+      this.cuoptext.innerText = this.cuoptext.innerText.slice(0,-1)
+   }
+   /*Limpar todos os numeros do curret*/
+   proceop(){
+      this.cuoptext.innerText = ""
+   }
+   /*Limpa todos os numeros que digitou*/
+   proclear() {
+      this.preoutex.innerText = ""
+      this.cuoptext.innerText = ""
+      
+   }
+
+   /*function para mostrar o resultado*/
+   proequalop(){
+      /*Procurando a operaçao*/
+      const operation = preoutex.innerText.split(" ")[1]
+         /*Fazer resultado final*/
+       this.proop(operation)
+   }
+}
 
    // add novos elementos...
    const calc = new Calculator(preoutex,cuoptext)
