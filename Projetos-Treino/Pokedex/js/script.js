@@ -56,7 +56,7 @@ const renderpokemon = async (pokemon) => {
 pokemonform.addEventListener("submit",function (evento) {
     /* o valor que irá digitar */
     search = pokemonsearch.value.toLowerCase()
-    /*para impedir a execuçao inicial dele,ou seja ao apertar para pesquisar nao enviar na hora ate que der enter*/
+    /*para impedir da tela recarregar*/
 
     evento.preventDefault();
     renderpokemon(search)
