@@ -1,4 +1,4 @@
-//Base Paramenters
+// Base Paramenters
 var renderer = new THREE.WebGLRenderer({antialias: true})
 
 renderer.setSize(window.innerWidth, window.innerHeight)
@@ -11,7 +11,7 @@ if (window.innerWidth > 800) {
 
 document.body.appendChild(renderer.domElement)
 
-//Make it responsive
+// Make it responsive
 window.addEventListener("resize",onWindowResize,false)
 
 function onWindowResize(){
@@ -24,7 +24,7 @@ function onWindowResize(){
 var camera = new THREE.PerspectiveCamera(20, window.innerWidth / window.innerHeight, 1, 500)
 camera.position.set(0, 2, 14)
 
-//add obj 3d
+// add obj 3d
 var scene = new THREE.Scene()
 var city = new THREE.Object3D()
 var smoke = new THREE.Object3D()
@@ -37,14 +37,14 @@ var setcolor = 0xF02050
 scene.background = new THREE.Color(setcolor)
 scene.fog =  new THREE.Fog(setcolor, 10, 16)
 
-//random Function 
+// random Function 
 function mathRandom(num = 8) {
     var numValue = - Math.random() * num + Math.random() * num
 
     return numValue
 }
 
-//Change Building Colors
+// Change Building Colors
 var setTintNum = true
  function setTintColor(){
     if(setTintNum) {
@@ -98,7 +98,7 @@ function init() {
          town.add(floor)
          town.add(cube)
     }
-//Particulars 
+// Particulars 
      var gmaterial = new THREE.MeshToonMaterial({
         color: 0xFFFF00, side: THREE.DoubleSide
      })
@@ -134,9 +134,131 @@ function init() {
  }
 
 // Mouse functions
+var raycaster = new THREE.Raycaster()
+var mouse = new THREE.Vector2(), INTERSECTED
+var intersected 
 
+function onMouseMove(e) {
+     e.preventDefault()
+     mouse.x = (e.clientX / window.innerWidth) * 2 - 1 
+     mouse.y = (e.clientY / window.innerHeight) * 2 + 1
+}
 
-//Calling main functions
+function onDocumentTouchStart(e) {
+     if(e.touches.length == 1) {
+         e.preventDefault()
+
+         mouse.x = e.touches[0].pageX - window.innerWidth / 2
+
+         mouse.y = e.touches[0].pageY - window.innerHeight / 2
+     }
+}
+function onDocumentTouchMove(e) {
+     if(e.touches.length == 1) {
+        e.preventDefault()
+
+        mouse.x = e.touches[0].pageX - window.innerWidth / 2
+
+        mouse.y = e.touches[0].pageY - window.innerHeight / 2
+     }
+}
+
+window.addEventListener('mousemove', onMouseMove)
+window.addEventListener('touchstart',onDocumentTouchStart)
+window.addEventListener('touchmove', onDocumentTouchMove)
+
+// Create lights
+var ambientLight = new THREE.AmbientLight(0xFFFFFF, 4)
+var lightFront = new THREE.SpotLight(0xFFFFFF, 20, 10)
+var lightBack = new THREE.PointLight(0xFFFFFF, 0.5)
+var spotlightHelper = new THREE.spotlightHelper(lightFront)
+
+lightFront.rotation.x = 45 * Math.PI / 100
+lightFront.rotation.z = -45 * Math.PI / 100
+lightFront.position.set(5, 5, 5) 
+lightFront.shadow.mapSize.width = 6000
+lightFront.shadow.mapSize.height = lightFront.shadow.mapSize.width
+lightFront.penumbra = 0.1
+lightBack.position.set(0, 6, 0)
+
+smoke.position.y = 2;
+
+scene.add(ambientLight);
+city.add(lightFront);
+scene.add(lightBack);
+scene.add(city);
+city.add(smoke);
+city.add(town);
+
+// Grid Helper
+var gridHelper = new THREE.GridHelper(60, 120, 0xFF0000, 0X000000);
+
+city.add(grindHelper);
+
+// Cars World
+var createCars = function (cScale = 2, cPos = 20, cColor = 0xFFFF00) {
+    var  cMat = new THREE.MeshToonMaterial({color: cColor, side: THREE.DoubleSide});
+    var gGeo = new THREE.CubeGeometry(1, cScale / 40, cScale / 40);
+    var cElem = new THREE.Mesh(gGeo, cMat);
+    var cAmp = 3;
+
+    if(createCarpos) {
+        createCarpos = false;
+        cElem.position.x = -cPos;
+        cElem.position.z = (mathRandom(cAmp));
+
+        TweenMax.to(cElem.position, 3, {x: cPos, repeat: -1, yoyo: true, delay: mathRandom(3)});
+    }else{
+        createCarpos = true
+        cElem.position.x = (mathRandom(cAmp));
+        cElem.position.z = -cPos;
+        cElem.position.y = 90 * Math.PI / 180;
+
+        TweenMax.to(cElem.position, 5, {z: cPos, repeat: -1, yoyo: true, delay: mathRandom(3), ease: Power1.easeInOut});
+    };
+    cElem.receiveShadow =  true;
+    cElem.castShadow = true;
+    cElem.position.y = Math.abs(mathRandom(5));
+    city.add(cElem);
+};
+
+var generateLines = function() {
+    for(var i = 0; i < 60; i++) {
+        createCars(0.1, 20);
+    };
+};
+
+// Camera Position 
+var cameraSet = function () {
+    createCars(0.1, 20, 0xFFFFFF);
+};
+
+// Animate functions 
+var animate = function() {
+     var time = Date.now() * 0.00005;
+     requestAnimationFrame(animate);
+ 
+     city.rotation.y -= ((mouse.x * 8) - camera.rotation.y) * uSpeed;
+
+     city.rotation.x -= ((mouse.y * 2) - camera.rotation.x) * uSpeed;
+
+     if (city.rotation.x < - 0.05) {
+         city.rotation.x = -0.05;
+     } else if (city.rotation.x > 1) {
+        city.rotation.x = 1;
+     }
+     var cityRotation = Math.sin(Date.now() / 5000) * 13;
+     for(let i = 0, l = town.children.length; i < l; i++){
+        var object = town.children[i];
+     };
+     smoke.position.y += 0.01;
+     smoke.position.x += 0.01;
+
+     camera.lookAt(city,position);
+     renderer.render(scene, camera);
+}
+
+// Calling main functions
 generateLines()
 init()
 animate()
