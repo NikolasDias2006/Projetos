@@ -30,7 +30,7 @@ window.addEventListener('resize', function() {
 
 function animation( time ) {
 
-	mesh.rotation.x = time / 2000;
+	mesh.rotation.x = time / 1000;
 	mesh.rotation.y = time / 1000;
 
 	renderer.render( scene, camera );
