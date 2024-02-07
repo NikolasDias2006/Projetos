@@ -1,0 +1,85 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@600;800&family=Handjet:wght@700&family=Oxanium:wght@300;400;500;600;700;800&family=Sriracha&display=swap');
+
+:root {
+    --Primary-Color: hsl(47, 88%, 63%);
+    --White: hsl(0, 0%, 100%);
+    --Grey: hsl(0, 0%, 50%);
+    --Black: hsl(0, 0%, 7%);
+    --Font-Size: 16px;
+}
+
+* {
+    margin: 0px; 
+    padding: 0px;
+}
+
+body {
+    background-color: var(--Primary-Color);
+    font-family: 'Figtree' , 'sans-serif' ;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.card {
+    max-width:350px;
+    background-color: var(--White);
+    border-radius: 20px;
+    box-shadow: 10px 15px;
+}
+
+.img1 > img {
+    width: 100%;
+    border-radius: 20px;  
+}
+
+.img1 {
+    padding: 20px;
+}
+
+.card-body, .card-footer {
+   padding: 20px;
+}
+
+button {
+    padding: 8px 18px;
+    background-color: var(--Primary-Color);
+    border-radius: 5px;
+    outline: none;
+    border:none;
+    font-style: 900;
+}
+
+.card-body p {
+    color: var(--Grey);
+}
+
+.card-middle {
+    padding: 0px 20px;
+}
+
+.card-middle button {
+    margin-bottom: 10px;
+}
+
+.card-body h2 {
+    margin-bottom: 15px;
+}
+
+.card-footer img {
+  width: 40px;
+  margin-right: 10px;
+}
+
+.avatar {
+    display: flex;
+    align-items: center;
+}
+
+.attribution {
+    position: fixed;
+    bottom: 0;   
+}
